@@ -6,9 +6,6 @@ module.exports = (sequelize, DataTypes) => {
             primaryKey: true,
             autoIncrement: true
         },
-        userid: {
-
-        },
         title: {
             type: DataTypes.STRING,
             allowNull: false
@@ -26,8 +23,13 @@ module.exports = (sequelize, DataTypes) => {
             allowNull: true
         }
     }, {});
-    User.associate = function(models){
-
+    Course.associate = function(models){
+        Course.belongsTo(models.User, {
+            foreignKey: {
+                fieldName: 'userId',
+                allowNull: false,
+            }
+        })
     };
     return Course;
 }
